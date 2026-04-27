@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ml">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Surprise</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: Arial, sans-serif;
+      background: #111;
+      color: white;
+      overflow: hidden;
+    }
+    .page {
+      display: none;
+      width: 100vw;
+      height: 100vh;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+    .active { display: flex; }
+    
+    button {
+      padding: 18px 36px;
+      font-size: 22px;
+      color: white;
+      background: #333;
+      border: 2px solid #555;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    button:hover { background: #444; }
+    
+    video {
+      max-width: 85%;
+      max-height: 70vh;
+    }
+    #byeText {
+      display: none;
+      margin-top: 25px;
+      font-size: 28px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Page 1: Button -->
+  <div id="page1" class="page active">
+    <button onclick="showPage2()">birthday wishes</button>
+  </div>
+
+  <!-- Page 2: Video -->
+  <div id="page2" class="page">
+    <video id="birthdayVideo" autoplay muted playsinline>
+      <source src="video.mp4" type="video/mp4">
+    </video>
+    <div id="byeText">Apo sheri okke Bye</div>
+  </div>
+
+  <script>
+    function showPage2() {
+      document.getElementById('page1').classList.remove('active');
+      document.getElementById('page2').classList.add('active');
+      
+      const video = document.getElementById('birthdayVideo');
+      video.muted = true; // Browser auto play kku muted venam
+      video.play();
+      
+      video.onended = function() {
+        document.getElementById('byeText').style.display = 'block';
+      };
+    }
+  </script>
+</body>
+  </html>
